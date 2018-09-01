@@ -1,0 +1,5 @@
+vendor
+null
+composer.lock
+.idea
+.env
