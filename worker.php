@@ -3,7 +3,9 @@
 require 'vendor/autoload.php';
 
 //dotenv
-(new \Dotenv\Dotenv(__DIR__))->load();
+if (file_exists('./.env')) {
+ (new \Dotenv\Dotenv(__DIR__))->load();
+}
 
 $container = new DI\Container();
 
