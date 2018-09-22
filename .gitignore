@@ -3,3 +3,4 @@ null
 composer.lock
 .idea
 .env
+node_modules

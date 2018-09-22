@@ -14,11 +14,12 @@ return [
             )
         );
     },
-    \Elasticsearch\Client::class => function (\Psr\Container\ContainerInterface $container) {
+    
+    /*\Elasticsearch\Client::class => function (\Psr\Container\ContainerInterface $container) {
         return \Elasticsearch\ClientBuilder::create()
             ->setHosts([
                 $container->get('elasticsearch')['endpoint']
             ])
             ->build();
-    }
+    }*/
 ];

@@ -10,5 +10,8 @@ return [
     'elasticsearch' => [
         'endpoint' => getenv('ELASTICSEARCH_ENDPOINT'),
         'index' => getenv('ELASTICSEARCH_INDEX')
+    ],
+    'discord_webhooks' => [
+        'order' => getenv('DISCORD_WEBHOOK_ORDER')
     ]
 ];
