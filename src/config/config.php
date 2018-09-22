@@ -13,5 +13,17 @@ return [
     ],
     'discord_webhooks' => [
         'order' => getenv('DISCORD_WEBHOOK_ORDER')
+    ],
+    'api' => [
+        'endpoint' => getenv('API_ENDPOINT'),
+        'key' => getenv('API_KEY')
+    ],
+    'ftp' => [
+        'host' => getenv('FTP_HOST'),
+        'port' => getenv('FTP_PORT'),
+        'username' => getenv('FTP_USERNAME'),
+        'password' => getenv('FTP_PASSWORD'),
+        'ssl' => (getenv('FTP_SSL') ? true : false),
+        'directory' => getenv('FTP_DIRECTORY')
     ]
 ];

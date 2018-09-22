@@ -4,7 +4,12 @@
         "php-di/php-di": "^6.0",
         "vlucas/phpdotenv": "^2.5",
         "lefuturiste/rabbitmq-consumer": "^1.1",
-        "phpmailer/phpmailer": "^6.0"
+        "phpmailer/phpmailer": "^6.0",
+        "nopjmp/discord-webhooks": "^0.3.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "lefuturiste/httper": "v0.4-alpha",
+        "twig/twig": "^2.5",
+        "nicolab/php-ftp-client": "^1.4"
     },
     "autoload": {
         "psr-4": {

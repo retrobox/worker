@@ -4,3 +4,4 @@ composer.lock
 .idea
 .env
 node_modules
+mjml/node_modules

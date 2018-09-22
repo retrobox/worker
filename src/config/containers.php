@@ -14,7 +14,20 @@ return [
             )
         );
     },
-    
+    \App\ApiClient::class => function (\Psr\Container\ContainerInterface $container) {
+        return new \App\ApiClient($container->get('api')['endpoint'], $container->get('api')['key']);
+    },
+    Twig_Environment::class => function () {
+        $loader = new Twig_Loader_Filesystem('./src/templates');
+        return new Twig_Environment($loader, []);
+    },
+    FtpClient\FtpClient::class => function (\Psr\Container\ContainerInterface $container) {
+        $client = new FtpClient\FtpClient();
+        $client->connect($container->get('ftp')['host'], $container->get('ftp')['ssl'], $container->get('ftp')['port']);
+        $client->login($container->get('ftp')['username'], $container->get('ftp')['password']);
+        $client->pasv(true);
+        return $client;
+    }
     /*\Elasticsearch\Client::class => function (\Psr\Container\ContainerInterface $container) {
         return \Elasticsearch\ClientBuilder::create()
             ->setHosts([
