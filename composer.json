@@ -9,7 +9,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "lefuturiste/httper": "v0.4-alpha",
         "twig/twig": "^2.5",
-        "nicolab/php-ftp-client": "^1.4"
+        "nicolab/php-ftp-client": "^1.4",
+        "ext-ftp": "*"
     },
     "autoload": {
         "psr-4": {

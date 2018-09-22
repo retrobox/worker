@@ -6,7 +6,6 @@ use Httper\Client;
 use Httper\Request;
 use Httper\Response;
 use Httper\Uri;
-use Psr\Http\Message\ResponseInterface;
 
 class ApiClient
 {
