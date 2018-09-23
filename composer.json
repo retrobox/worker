@@ -10,7 +10,9 @@
         "lefuturiste/httper": "v0.4-alpha",
         "twig/twig": "^2.5",
         "nicolab/php-ftp-client": "^1.4",
-        "ext-ftp": "*"
+        "ext-ftp": "*",
+        "symfony/translation": "^4.1",
+        "symfony/twig-bridge": "^4.1"
     },
     "autoload": {
         "psr-4": {

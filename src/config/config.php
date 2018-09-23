@@ -25,5 +25,13 @@ return [
         'password' => getenv('FTP_PASSWORD'),
         'ssl' => (getenv('FTP_SSL') ? true : false),
         'directory' => getenv('FTP_DIRECTORY')
+    ],
+    'data_endpoint' => getenv('DATA_ENDPOINT'),
+    'smtp' => [
+        'host' => getenv('SMTP_HOST'),
+        'port' => getenv('SMTP_PORT'),
+        'username' => getenv('SMTP_USERNAME'),
+        'password' => getenv('SMTP_PASSWORD'),
+        'secure' => getenv('SMTP_SECURE')
     ]
 ];

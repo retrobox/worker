@@ -1,0 +1,28 @@
+{
+  "locale": "fr",
+  "order-payed": {
+    "title": "Merci pour votre commande !",
+    "hello": "Bonjour",
+    "description": "Amors credere, tanquam nobilis lanista? Pol, rumor nunquam gratia terror accelerare satis ducunt ad ferox gemna ubi est brevis ratione?",
+    "item": "Article",
+    "items": "Articles",
+    "price": "Prix",
+    "sub_total": "Sous total",
+    "shipping_price": "Prix de livraison",
+    "total": "Total",
+    "bill_online": {
+      "description": "Vous pouvez aussi consultez votre facture en ligne",
+      "button": "Voir la facture"
+    },
+    "shipping_address": "Adresse de facturation",
+    "need-help": "Besoin d'aide ? Contactez nous sur noter",
+    "contact-us": "site web",
+    "contact-us-twitter": "ou sur twitter",
+    "contact-us-community": "Vous voulez rejoindre notre communauté ? Nous vous invitons sur notre ",
+    "contact-us-discord": "discord",
+    "contact-us-open-source": "Notre projet est open source voyez notre profil ",
+    "contact-us-github": "github",
+    "created_at": "Créé le :",
+    "way": "Méthode de payment :"
+  }
+}

@@ -1,0 +1,21 @@
+{{ 'order-payed.hello'|trans }} {{ first_name }},
+{{ 'order-payed.description'|trans }}
+
+{% for item in items %}
+{{ 'order-payed.item'|trans }}: {{ item.name }}
+{{ 'order-payed.price'|trans }}: {{ item.price }}
+{% endfor %}
+{{ 'order-payed.sub_total'|trans }}: {{ sub_total }}
+{{ 'order-payed.shipping_price'|trans }}: {{ shipping_price }}
+{{ 'order-payed.total'|trans }}: {{ total }}
+
+{{ 'order-payed.bill_online.description'|trans }}:
+{{ bill_url }}
+
+{{ 'order-payed.shipping_address'|trans }}:
+{{ first_name }} {{ last_name }}
+{{ address_first_line }}
+{% if address_second_line is defined and address_second_line|length > 0 %}
+<p>{{ address_second_line }}</p>{% endif %}
+{{ address_postal_code }} {{ address_city }}
+{% if address_country is defined and address_country|length > 0 %}{{ address_country }}{% endif %}
