@@ -14,7 +14,7 @@
   "order-payed": {
     "title": "Thanks for your order !",
     "hello": "Hi",
-    "description": "Prepare your soldering iron ! You will soon receive the order! We work there quickly...",
+    "description": "Prepare your soldering iron ! You will soon receive the order! We work there quickly... Here is a summary of your order :",
     "item": "Item",
     "items": "Items",
     "price": "Price",
