@@ -14,7 +14,7 @@
   "order-payed": {
     "title": "Thanks for your order !",
     "hello": "Hi",
-    "description": "Amors credere, tanquam nobilis lanista? Pol, rumor nunquam gratia terror accelerare satis ducunt ad ferox gemna ubi est brevis ratione?",
+    "description": "Prepare your soldering iron ! You will soon receive the order! We work there quickly...",
     "item": "Item",
     "items": "Items",
     "price": "Price",
@@ -32,7 +32,7 @@
   "order-shipped": {
     "title": "Your order was shipped",
     "hello": "Hi",
-    "description": "Lacteas credere in alter vasa! Pol, alter magister! Aonidess observare in amivadum! Hercle, era pius!, mirabilis advena! Pars, advena, et acipenser.",
+    "description": "I have a good new ! We have done our best and your order is already sent! enjoy ;)",
     "shipping_address": "This is your shipping address:"
   }
 }
