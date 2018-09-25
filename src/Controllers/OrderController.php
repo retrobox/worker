@@ -154,4 +154,78 @@ class OrderController
 
         (new Client($container->get('discord_webhooks')['order']))->embed($embed)->send();
     }
+
+    public function shipped($body, ContainerInterface $container)
+    {
+        //get the order by using the api
+        echo ">> The order {$body['id']} was shipped";
+
+        $apiClient = $container->get(ApiClient::class);
+        //get the order via API
+        $response = $apiClient
+            ->graphQL([
+                'query' => "query (\$id: String) {
+                    getOneShopOrder(id: \$id) {
+                        id
+                        total_shipping_price
+                        total_price
+                        sub_total_price
+                        way
+                        created_at
+                        items {
+                            id
+                            title
+                            price
+                        }
+                        user {
+                            id
+                            last_avatar
+                            last_username
+                            first_name
+                            last_name
+                            last_locale
+                            last_email
+                            address_first_line
+                            address_second_line
+                            address_city
+                            address_postal_code
+                            address_country
+                        }
+                    }
+                }",
+                'variables' => [
+                    'id' => $body['id']
+                ]
+            ]);
+        $order = $response->getParsedBody(1)['data']['getOneShopOrder'];
+
+        /**
+         * Send a email to the customer
+         */
+        $templateVariables = [
+            'id' => $order['id'],
+            'first_name' => $order['user']['first_name'],
+            'last_name' => $order['user']['last_name'],
+            'address_first_line' => $order['user']['address_first_line'],
+            'address_second_line' => $order['user']['address_second_line'],
+            'address_postal_code' => $order['user']['address_postal_code'],
+            'address_city' => $order['user']['address_city'],
+            'address_country' => $order['user']['address_country'],
+            'total' => $order['total_price'],
+            'sub_total' => $order['sub_total_price'],
+            'total_shipping_price' => $order['total_shipping_price']
+        ];
+        $mail = $container->get(PHPMailer::class);
+        try {
+            $mail->addAddress($order['user']['last_email'], "{$order['user']['first_name']} {$order['user']['last_name']}");
+            $mail->isHTML(true);
+            $mail->Subject = $container->get(Translator::class)->trans('order-shipped.title');
+            $mail->Body = $container->get(Twig_Environment::class)->render('email/order-shipped.twig', $templateVariables);
+            $mail->AltBody = $container->get(Twig_Environment::class)->render('email/order-shipped-row.twig', $templateVariables);
+
+            $mail->send();
+        } catch (\Exception $e) {
+            echo 'PHPMailer: Message could not be sent. Mailer Error: ', $e->getMessage();
+        }
+    }
 }

@@ -1,0 +1,47 @@
+{% extends 'email/template.twig' %}
+{% block content %}
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
+            <div style="cursor:auto;color:#636e72;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;">
+                <h2 style="font-family: Roboto, Helvetica, Arial, sans-serif;font-weight: 500;font-size: 20px;color: #2d3436;letter-spacing: 0.27px;">
+                    {{ 'order-shipped.hello'|trans }} {{ first_name }},</h2>
+                <p></p>
+
+                <p>{{ 'order-shipped.description'|trans }}</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:20px 0px;">
+            <p style="font-size:1px;margin:0px auto;border-top:1px solid #DCDDDE;width:100%;"></p>
+            <!--[if mso | IE]>
+            <table role="presentation" align="center" border="0" cellpadding="0"
+                   cellspacing="0"
+                   style="font-size:1px;margin:0px auto;border-top:1px solid #DCDDDE;width:100%;"
+                   width="640">
+                <tr>
+                    <td style="height:0;line-height:0;">&nbsp;</td>
+                </tr>
+            </table><![endif]-->
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
+            <div style="cursor:auto;color:#636e72;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;">
+                <p style="text-align: center;">{{ 'order-shipped.shipping_address'|trans }}</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:0px;text-align:center"
+            align="left">
+            <div style="cursor:auto;color:#7f8c8d;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:15px;line-height:8px;text-align:center;">
+                <p>{{ first_name }} {{ last_name }}</p>
+                <p>{{ address_first_line }}</p>
+                {% if address_second_line is defined and address_second_line|length > 0 %}<p>{{ address_second_line }}</p>{% endif %}
+                <p>{{ address_postal_code }} {{ address_city }}</p>
+                {% if address_country is defined and address_country|length > 0 %}<p>{{ address_country }}</p>{% endif %}
+            </div>
+        </td>
+    </tr>
+{% endblock %}

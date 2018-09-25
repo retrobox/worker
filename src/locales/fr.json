@@ -1,5 +1,16 @@
 {
   "locale": "fr",
+  "email": {
+    "need-help": "Besoin d'aide ? Contactez nous sur notre",
+    "contact-us": {
+      "website": "site web",
+      "twitter": "ou sur twitter",
+      "community": "Vous voulez rejoindre notre communauté ? Nous vous invitons sur notre ",
+      "discord": "discord",
+      "open-source": "Notre projet est open source voyez notre profil",
+      "github": "github"
+    }
+  },
   "order-payed": {
     "title": "Merci pour votre commande !",
     "hello": "Bonjour",
@@ -15,14 +26,13 @@
       "button": "Voir la facture"
     },
     "shipping_address": "Adresse de facturation",
-    "need-help": "Besoin d'aide ? Contactez nous sur noter",
-    "contact-us": "site web",
-    "contact-us-twitter": "ou sur twitter",
-    "contact-us-community": "Vous voulez rejoindre notre communauté ? Nous vous invitons sur notre ",
-    "contact-us-discord": "discord",
-    "contact-us-open-source": "Notre projet est open source voyez notre profil ",
-    "contact-us-github": "github",
     "created_at": "Créé le :",
     "way": "Méthode de payment :"
+  },
+  "order-shipped": {
+    "title": "Votre commande à été envoyé !",
+    "hello": "Salut",
+    "description": "Lacteas credere in alter vasa! Pol, alter magister! Aonidess observare in amivadum! Hercle, era pius!, mirabilis advena! Pars, advena, et acipenser.",
+    "shipping_address": "Pour rappel, ceci est votre adresse de livraison :"
   }
 }

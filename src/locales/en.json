@@ -1,5 +1,16 @@
 {
   "locale": "en",
+  "email": {
+    "need-help": "Need help ? Contact us on our",
+    "contact-us": {
+      "website": "web site",
+      "twitter": "or on twitter",
+      "community": "Want to join our community ? Join our ",
+      "discord": "discord",
+      "us-open-source": "Our project is open source, see the ",
+      "github": "github page"
+    }
+  },
   "order-payed": {
     "title": "Thanks for your order !",
     "hello": "Hi",
@@ -15,14 +26,13 @@
       "button": "See online invoice"
     },
     "shipping_address": "Shipping address",
-    "need-help": "Need help ? You can contact us on our ",
-    "contact-us": "web site",
-    "contact-us-twitter": "or on Twitter",
-    "contact-us-community": "Want to join our community ? Go ahead on ",
-    "contact-us-discord": "discord",
-    "contact-us-open-source": "Our project is open source, star us on ",
-    "contact-us-github": "github",
     "created_at": "Created at:",
     "way": "Payment method:"
+  },
+  "order-shipped": {
+    "title": "Your order was shipped",
+    "hello": "Hi",
+    "description": "Lacteas credere in alter vasa! Pol, alter magister! Aonidess observare in amivadum! Hercle, era pius!, mirabilis advena! Pars, advena, et acipenser.",
+    "shipping_address": "This is your shipping address:"
   }
 }
