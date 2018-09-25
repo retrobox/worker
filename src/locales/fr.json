@@ -14,7 +14,7 @@
   "order-payed": {
     "title": "Merci pour votre commande !",
     "hello": "Bonjour",
-    "description": "Préparer le matériel ! Vous allez bientôt recevoir la commande ! On y bosse rapidement... Voici donc un récupilatif de votre commande :",
+    "description": "Préparer le matériel ! Vous allez bientôt recevoir la commande ! On y bosse rapidement... Voici donc un récapitulatif de votre commande :",
     "item": "Article",
     "items": "Articles",
     "price": "Prix",
