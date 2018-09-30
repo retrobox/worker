@@ -33,6 +33,10 @@ class OrderController
                             id
                             title
                             price
+                            pivot {
+                                shop_item_custom_option_storage
+                                shop_item_custom_option_color
+                            }
                         }
                         user {
                             id
@@ -54,6 +58,11 @@ class OrderController
                     'id' => $body['id']
                 ]
             ]);
+        if ($response->getStatusCode() != 200){
+            echo "\n API ERROR!";
+            var_dump($response->getParsedBody());
+            exit();
+        }
         $order = $response->getParsedBody(1)['data']['getOneShopOrder'];
 
         /**
@@ -101,9 +110,9 @@ class OrderController
         $templateVariables['bill_url'] = $container->get('data_endpoint') . "/" . $fileName;
 
         //edit the link on the api
-        $apiClient->graphQL([
-            'query' => "mutation (\$order: OrderUpdateInput) {
-                updateOrder(order: \$order)
+        $response = $apiClient->graphQL([
+            'query' => "mutation (\$order: ShopOrderUpdateInput) {
+                updateShopOrder(order: \$order)
             }",
             'variables' => [
                 'order' => [
@@ -112,6 +121,49 @@ class OrderController
                 ]
             ]
         ]);
+        if ($response->getStatusCode() != 200){
+            echo "\n API ERROR!";
+            var_dump($response->getParsedBody());
+            exit();
+        }
+
+        /**
+         * Add consoles on Api if needed
+         */
+        //search for consoles
+        //add each by requesting the API
+        foreach ($order['items'] as $shopItem) {
+            if (
+                isset($shopItem['pivot']['shop_item_custom_option_storage']) &&
+                $shopItem['pivot']['shop_item_custom_option_storage'] !== null &&
+                $shopItem['pivot']['shop_item_custom_option_storage'] !== '' &&
+                isset($shopItem['pivot']['shop_item_custom_option_color']) &&
+                $shopItem['pivot']['shop_item_custom_option_color'] !== '' &&
+                $shopItem['pivot']['shop_item_custom_option_color'] !== null
+            ) {
+                $response = $apiClient->graphQL([
+                    'query' => "mutation (\$console: ConsoleStoreInput!) {
+                        storeConsole(console: \$console) {
+                            id,
+                            saved
+                        }
+                    }",
+                    'variables' => [
+                        'console' => [
+                            'color' => $shopItem['pivot']['shop_item_custom_option_color'],
+                            'storage' => strval($shopItem['pivot']['shop_item_custom_option_storage']),
+                            'order_id' => $order['id'],
+                            'user_id' => $order['user']['id']
+                        ]
+                    ]
+                ]);
+                if ($response->getStatusCode() != 200){
+                    echo "\n API ERROR!";
+                    exit();
+                }
+            }
+        }
+
 
         /**
          * Send a email to the customer
