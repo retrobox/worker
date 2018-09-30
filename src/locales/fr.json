@@ -14,7 +14,7 @@
   "order-payed": {
     "title": "Merci pour votre commande !",
     "hello": "Bonjour",
-    "description": "Amors credere, tanquam nobilis lanista? Pol, rumor nunquam gratia terror accelerare satis ducunt ad ferox gemna ubi est brevis ratione?",
+    "description": "Préparer le matériel ! Vous allez bientôt recevoir la commande ! On y bosse rapidement... Voici donc un récapitulatif de votre commande :",
     "item": "Article",
     "items": "Articles",
     "price": "Prix",
@@ -32,7 +32,7 @@
   "order-shipped": {
     "title": "Votre commande à été envoyé !",
     "hello": "Salut",
-    "description": "Lacteas credere in alter vasa! Pol, alter magister! Aonidess observare in amivadum! Hercle, era pius!, mirabilis advena! Pars, advena, et acipenser.",
+    "description": "J'ai une bonne nouvelle ! On a fait notre maximum et votre commande est déjà envoyée ! Profitez bien ;)",
     "shipping_address": "Pour rappel, ceci est votre adresse de livraison :"
   }
 }
