@@ -1,6 +1,7 @@
 FROM lefuturiste/docker-php
 LABEL maintainer="contact@thingmill.fr"
 ADD . /app
+WORKDIR /app
 RUN composer install
 # default envs vars
 ENV RABBITMQ_HOST rabbitmq
