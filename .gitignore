@@ -5,3 +5,4 @@ composer.lock
 .env
 node_modules
 mjml/node_modules
+tmp/*.html
