@@ -12,7 +12,8 @@
         "nicolab/php-ftp-client": "^1.4",
         "ext-ftp": "*",
         "symfony/translation": "^4.1",
-        "symfony/twig-bridge": "^4.1"
+        "symfony/twig-bridge": "^4.1",
+        "nesbot/carbon": "^2.25"
     },
     "autoload": {
         "psr-4": {

@@ -10,6 +10,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Translation\Translator;
 use Twig_Environment;
+use Carbon\Carbon;
 
 class OrderController
 {
@@ -78,8 +79,8 @@ class OrderController
             ];
         }, $order['items']);
         $templateVariables = [
-            'id' => $order['id'],
-            'created_at' => $order['created_at'],
+            'id' => strtoupper($order['id']),
+            'created_at' => ((new Carbon($order['created_at']))->locale('fr')->isoFormat('dddd DD MMMM YYYY')),
             'first_name' => $order['user']['first_name'],
             'last_name' => $order['user']['last_name'],
             'address_first_line' => $order['user']['address_first_line'],
@@ -97,7 +98,9 @@ class OrderController
         $html = $twig->render('invoice.twig', $templateVariables);
         $fileName = 'invoice-' . $order['id'] . '.html';
         file_put_contents('tmp/' . $fileName, $html);
-
+        echo 'tmp/' . $fileName;
+        // DEBUG
+        exit(0);
         /**
          * Upload invoice on ftp
          */

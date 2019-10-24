@@ -27,7 +27,8 @@
     },
     "shipping_address": "Shipping address",
     "created_at": "Created at:",
-    "way": "Payment method:"
+    "way": "Payment method:",
+    "order-id": "BILL # %id%"
   },
   "order-shipped": {
     "title": "Your order was shipped",

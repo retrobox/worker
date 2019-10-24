@@ -20,14 +20,15 @@
     "price": "Prix",
     "sub_total": "Sous total",
     "shipping_price": "Prix de livraison",
-    "total": "Total",
+    "total": "Total :",
     "bill_online": {
       "description": "Vous pouvez aussi consultez votre facture en ligne",
       "button": "Voir la facture"
     },
     "shipping_address": "Adresse de facturation",
-    "created_at": "Créé le :",
-    "way": "Méthode de payment :"
+    "created_at": "Créé le",
+    "way": "Méthode de payment :",
+    "order-id": "FACTURE N° %id%"
   },
   "order-shipped": {
     "title": "Votre commande à été envoyé !",
