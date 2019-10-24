@@ -32,6 +32,7 @@ return [
         'port' => getenv('SMTP_PORT'),
         'username' => getenv('SMTP_USERNAME'),
         'password' => getenv('SMTP_PASSWORD'),
-        'secure' => getenv('SMTP_SECURE')
+        'secure' => getenv('SMTP_SECURE'),
+        'debug' => getenv('SMTP_DEBUG')
     ]
 ];

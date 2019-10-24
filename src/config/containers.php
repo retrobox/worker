@@ -35,14 +35,14 @@ return [
             )
         );
         $mailer->CharSet = 'UTF-8';
-        $mailer->SMTPDebug = false;
+        $mailer->SMTPDebug = $container->get('smtp')['debug'];
         $mailer->Host = $container->get('smtp')['host'];
         $mailer->Port = $container->get('smtp')['port'];
         $mailer->SMTPAuth = true;
         $mailer->Username = $container->get('smtp')['username'];
         $mailer->Password = $container->get('smtp')['password'];
         $mailer->SMTPSecure = $container->get('smtp')['secure']; //tls
-        $mailer->setFrom('no-reply@retrobox.tech', 'Retrobox');
+        $mailer->setFrom('contact@retrobox.tech', 'Retrobox');
         return $mailer;
     },
     Symfony\Component\Translation\Translator::class => function () {
