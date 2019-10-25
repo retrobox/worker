@@ -6,3 +6,4 @@ composer.lock
 node_modules
 mjml/node_modules
 tmp/*.html
+.env.prod
