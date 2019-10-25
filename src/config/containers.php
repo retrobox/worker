@@ -42,7 +42,7 @@ return [
         $mailer->Username = $container->get('smtp')['username'];
         $mailer->Password = $container->get('smtp')['password'];
         $mailer->SMTPSecure = $container->get('smtp')['secure']; //tls
-        $mailer->setFrom('contact@retrobox.tech', 'Retrobox');
+        $mailer->setFrom('no-reply@mg.retrobox.tech', 'Retrobox');
         return $mailer;
     },
     Symfony\Component\Translation\Translator::class => function () {
