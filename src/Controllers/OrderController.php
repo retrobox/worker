@@ -98,9 +98,13 @@ class OrderController
         $html = $twig->render('invoice.twig', $templateVariables);
         $fileName = 'invoice-' . $order['id'] . '.html';
         file_put_contents('tmp/' . $fileName, $html);
+        
+        /*
+        // Uncomment to just see the invoice
         echo 'tmp/' . $fileName;
         // DEBUG
-        exit(0);
+        exit(0);*/
+
         /**
          * Upload invoice on ftp
          */
@@ -166,7 +170,6 @@ class OrderController
                 }
             }
         }
-
 
         /**
          * Send a email to the customer
