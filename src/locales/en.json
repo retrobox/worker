@@ -2,6 +2,7 @@
   "locale": "en",
   "email": {
     "need-help": "Need help ? Contact us on our",
+    "no-reply": "Please do not answer to this email, send your request on contact@retrobox.tech",
     "contact-us": {
       "website": "web site",
       "twitter": "or on twitter",
