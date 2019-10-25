@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\ApiClient;
 use DiscordWebhooks\Client;
 use DiscordWebhooks\Embed;
-use FtpClient\FtpClient;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Translation\Translator;
@@ -105,15 +104,20 @@ class OrderController
         // DEBUG
         exit(0);*/
 
+        echo "\n   Uploading to " . $container->get('ftp')['directory'] . '/' . $fileName . " \n";
         /**
          * Upload invoice on ftp
          */
-        $container->get(FtpClient::class)
-            ->put(
-                $container->get('ftp')['directory'] . '/' . $fileName,
-                'tmp/' . $fileName,
-                FTP_BINARY
-            );
+        $ftp = $container->get(\Ftp::class);
+        $ftp->put(
+            $container->get('ftp')['directory'] . '/' . $fileName,
+            'tmp/' . $fileName,
+            FTP_BINARY
+        );
+        $ftp->close();
+        
+        echo "\n   Upload complete \n";
+
         $templateVariables['bill_url'] = $container->get('data_endpoint') . "/" . $fileName;
 
         //edit the link on the api

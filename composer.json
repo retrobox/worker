@@ -9,11 +9,11 @@
         "guzzlehttp/guzzle": "^6.3",
         "lefuturiste/httper": "v0.4-alpha",
         "twig/twig": "^2.5",
-        "nicolab/php-ftp-client": "^1.4",
         "ext-ftp": "*",
         "symfony/translation": "^4.1",
         "symfony/twig-bridge": "^4.1",
-        "nesbot/carbon": "^2.25"
+        "nesbot/carbon": "^2.25",
+        "dg/ftp-php": "^1.2"
     },
     "autoload": {
         "psr-4": {

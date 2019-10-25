@@ -17,11 +17,12 @@ return [
     \App\ApiClient::class => function (\Psr\Container\ContainerInterface $container) {
         return new \App\ApiClient($container->get('api')['endpoint'], $container->get('api')['key']);
     },
-    FtpClient\FtpClient::class => function (\Psr\Container\ContainerInterface $container) {
-        $client = new FtpClient\FtpClient();
-        $client->connect($container->get('ftp')['host'], $container->get('ftp')['ssl'], $container->get('ftp')['port']);
+    Ftp::class => function (\Psr\Container\ContainerInterface $container) {
+        $client = new Ftp();
+        //, $container->get('ftp')['ssl'], $container->get('ftp')['port']
+        $client->connect($container->get('ftp')['host']);
         $client->login($container->get('ftp')['username'], $container->get('ftp')['password']);
-        $client->pasv(true);
+        //$client->pasv(true);
         return $client;
     },
     \PHPMailer\PHPMailer\PHPMailer::class => function (\Psr\Container\ContainerInterface $container) {
