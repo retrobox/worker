@@ -24,13 +24,13 @@
                             </td>
                         </tr>
                     {% endfor %}
-                    <tr style="margin-bottom:15px;font-size:15px;">
+                    <tr style="margin-bottom:15px;font-size:15px;border-bottom:1px solid #ecedee;">
                         <td style="padding: 5px 15px 5px 0px;">{{ 'order-payed.sub_total'|trans }}</td>
                         <td style="padding: 5px 15px 5px 0px;">{{ sub_total }}</td>
                     </tr>
                     <tr style="margin-bottom:15px;font-size:15px;border-bottom:1px solid #ecedee;">
-                        <td style="padding: 0 15px 5px 0px;">{{ 'order-payed.shipping_price'|trans }}</td>
-                        <td style="padding: 0 15px 5px 0px;">{{ total_shipping_price }}</td>
+                        <td style="padding: 5px 15px 5px 0px;">{{ 'order-payed.shipping_price'|trans }}</td>
+                        <td style="padding: 5px 15px 5px 0px;">{{ total_shipping_price }}</td>
                     </tr>
                     <tr style="margin-bottom:15px;font-size:15px; font-weight:bold;">
                         <td style="padding: 7px 15px 5px 0px;">{{ 'order-payed.total'|trans }}</td>
