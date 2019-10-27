@@ -21,7 +21,7 @@
     "price": "Prix",
     "sub_total": "Sous total",
     "shipping_price": "Prix de livraison",
-    "total": "Total :",
+    "total": "Total",
     "bill_online": {
       "description": "Vous pouvez aussi consultez votre facture en ligne",
       "button": "Voir la facture"
