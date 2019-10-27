@@ -109,7 +109,9 @@ class OrderController
         /**
          * Upload invoice on ftp
          */
-        $ftp = $container->get(\Ftp::class);
+        $ftp = new \Ftp();
+        $ftp->connect($container->get('ftp')['host']);
+        $ftp->login($container->get('ftp')['username'], $container->get('ftp')['password']);
         $ftp->put(
             $container->get('ftp')['directory'] . '/' . $fileName,
             'tmp/' . $fileName,
