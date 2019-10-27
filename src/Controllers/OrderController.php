@@ -100,10 +100,11 @@ class OrderController
         
         /*
         // Uncomment to just see the invoice
-        echo 'tmp/' . $fileName;
+        echo "\n tmp/" . $fileName;
         // DEBUG
-        exit(0);*/
-
+        exit(0);
+        */
+        
         echo "\n   Uploading to " . $container->get('ftp')['directory'] . '/' . $fileName . " \n";
         /**
          * Upload invoice on ftp
