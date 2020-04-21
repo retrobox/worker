@@ -14,10 +14,10 @@ $builder->addDefinitions(include './src/config/config.php');
 $builder->addDefinitions(include './src/config/containers.php');
 $container = $builder->build();
 
-$client = $container->get(\Lefuturiste\RabbitMQConsumer\Client::class);
+$client = $container->get(\Lefuturiste\Jobatator\Client::class);
 
 $client->setRootValue($container);
 
 include 'src/listeners.php';
 
-$client->listen();
+$client->startWorker();

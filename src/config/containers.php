@@ -1,18 +1,16 @@
 <?php
 
-use PhpAmqpLib\Connection\AMQPStreamConnection;
-
-return [
-    \Lefuturiste\RabbitMQConsumer\Client::class => function (\Psr\Container\ContainerInterface $container) {
-        return new \Lefuturiste\RabbitMQConsumer\Client(
-            new AMQPStreamConnection(
-                $container->get('rabbitmq')['host'],
-                $container->get('rabbitmq')['port'],
-                $container->get('rabbitmq')['username'],
-                $container->get('rabbitmq')['password'],
-                $container->get('rabbitmq')['virtual_host']
-            )
+return [    
+    \Lefuturiste\Jobatator\Client::class => function(\Psr\Container\ContainerInterface $container) {
+        $client = new \Lefuturiste\Jobatator\Client(
+            $container->get('jobatator')['host'],
+            $container->get('jobatator')['port'],
+            $container->get('jobatator')['username'],
+            $container->get('jobatator')['password'],
+            $container->get('jobatator')['group']
         );
+        $client->createConnexion();
+        return $client;
     },
     \App\ApiClient::class => function (\Psr\Container\ContainerInterface $container) {
         return new \App\ApiClient($container->get('api')['endpoint'], $container->get('api')['key']);

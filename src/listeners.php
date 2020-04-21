@@ -1,4 +1,4 @@
 <?php
-$client->addListener('order.payed', [\App\Controllers\OrderController::class, 'payed']);
-$client->addListener('order.shipped', [\App\Controllers\OrderController::class, 'shipped']);
-$client->addListener('test.email', [\App\Controllers\TestController::class, 'testEmail']);
+$client->addHandler('order.payed', [\App\Controllers\OrderController::class, 'payed']);
+$client->addHandler('order.shipped', [\App\Controllers\OrderController::class, 'shipped']);
+$client->addHandler('test.email', [\App\Controllers\TestController::class, 'testEmail']);

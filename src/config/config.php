@@ -1,11 +1,11 @@
 <?php
 return [
-    'rabbitmq' => [
-        'host' => getenv('RABBITMQ_HOST'),
-        'port' => getenv('RABBITMQ_PORT'),
-        'username' => getenv('RABBITMQ_USERNAME'),
-        'password' => getenv('RABBITMQ_PASSWORD'),
-        'virtual_host' => getenv('RABBITMQ_VIRTUAL_HOST')
+    'jobatator' => [
+        'host' => getenv('JOBATATOR_HOST'),
+        'port' => getenv('JOBATATOR_PORT'),
+        'username' => getenv('JOBATATOR_USERNAME'),
+        'password' => getenv('JOBATATOR_PASSWORD'),
+        'group' => getenv('JOBATATOR_GROUP')
     ],
     'elasticsearch' => [
         'endpoint' => getenv('ELASTICSEARCH_ENDPOINT'),
