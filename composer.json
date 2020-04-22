@@ -13,7 +13,7 @@
         "symfony/twig-bridge": "^4.1",
         "nesbot/carbon": "^2.25",
         "dg/ftp-php": "^1.2",
-        "lefuturiste/jobatator-php": "^0.2.0"
+        "lefuturiste/jobatator-php": "^0.4"
     },
     "autoload": {
         "psr-4": {

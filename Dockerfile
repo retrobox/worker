@@ -1,14 +1,14 @@
-FROM lefuturiste/docker-php
+FROM lefuturiste/php:7.4
 LABEL maintainer="contact@thingmill.fr"
 ADD . /app
 WORKDIR /app
 RUN composer install
 # default envs vars
-ENV RABBITMQ_HOST rabbitmq
-ENV RABBITMQ_PORT 5672
-ENV RABBITMQ_USERNAME root
-ENV RABBITMQ_PASSWORD root
-ENV RABBITMQ_VIRTUAL_HOST retrobox
+ENV JOBATATOR_HOST jobatator
+ENV JOBATATOR_PORT 8962
+ENV JOBATATOR_USERNAME root
+ENV JOBATATOR_PASSWORD root
+ENV JOBATATOR_GROUP retrobox
 ENV FTP_HOST ftp
 ENV FTP_PORT 21
 ENV FTP_SSL true
@@ -26,4 +26,4 @@ ENV SMTP_PASSWORD XXXXXX
 #ENV ELASTICSEARCH_ENDPOINT http://elasticsearch:9200
 #ENV ELASTICSEARCH_INDEX notepader
 # run
-CMD php worker.php
+CMD ["php", "worker.php"]
