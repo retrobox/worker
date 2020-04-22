@@ -1,9 +1,9 @@
 vendor
 null
-composer.lock
 .idea
 .env
 node_modules
 mjml/node_modules
 tmp/*.html
 .env.prod
+.env.local
