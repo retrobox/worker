@@ -18,6 +18,8 @@ $client = $container->get(\Lefuturiste\Jobatator\Client::class);
 
 $client->setRootValue($container);
 
-include 'src/listeners.php';
+include 'src/handlers.php';
+
+echo "> Worker initialized, now ready to work... \n";
 
 $client->startWorker();
