@@ -7,7 +7,7 @@ use Psr\Container\ContainerInterface;
 
 class TestController
 {
-    public function testEmail($body, ContainerInterface $container)
+    public static function testEmail($body, ContainerInterface $container)
     {
         $mail = $container->get(PHPMailer::class);
         try {

@@ -13,9 +13,9 @@ use Carbon\Carbon;
 
 class OrderController
 {
-    public function payed($body, ContainerInterface $container)
+    public static function payed($body, ContainerInterface $container)
     {
-        echo ">> The order {$body['id']} was payed";
+        echo ">> The order {$body['id']} was payed \n";
 
         $apiClient = $container->get(ApiClient::class);
         //get the order via API
@@ -220,7 +220,7 @@ class OrderController
         (new Client($container->get('discord_webhooks')['order']))->embed($embed)->send();
     }
 
-    public function shipped($body, ContainerInterface $container)
+    public static function shipped($body, ContainerInterface $container)
     {
         //get the order by using the api
         echo ">> The order {$body['id']} was shipped";
