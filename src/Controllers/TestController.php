@@ -2,24 +2,36 @@
 
 namespace App\Controllers;
 
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class TestController
 {
-    public static function testEmail($body, ContainerInterface $container)
+    /**
+     * @param $payload
+     * @param ContainerInterface $container
+     * @return bool
+     * @throws Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public static function testEmail($payload, ContainerInterface $container)
     {
         $mail = $container->get(PHPMailer::class);
-        try {
-            $mail->addAddress('spamfree@matthieubessat.fr', "Matthieu Bessat");
-            $mail->isHTML(true);
-            $mail->Subject = "Email de test";
-            $mail->Body = "Ceci est un email de test";
-            $mail->AltBody = "LELEL";
+        $mail->addAddress($payload['email'], isset($payload['name']) ? $payload['name'] : "John Doe");
+        $mail->isHTML(true);
+        $mail->Subject = "Test email, I repeat this is a test";
+        $mail->Body = $container->get(Environment::class)
+            ->render('email/test.twig', ['payload' => json_encode($payload)]);
+        $mail->AltBody = "You must see the email in HTML";
+        $mail->send();
 
-            $mail->send();
-        } catch (\Exception $e) {
-            echo 'PHPMailer: Message could not be sent. Mailer Error: ', $e->getMessage();
-        }
+        return true;
     }
 }

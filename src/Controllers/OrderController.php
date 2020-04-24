@@ -5,14 +5,26 @@ namespace App\Controllers;
 use App\ApiClient;
 use DiscordWebhooks\Client;
 use DiscordWebhooks\Embed;
+use Exception;
+use Ftp;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Translation\Translator;
-use Twig_Environment;
+use Twig\Environment;
 use Carbon\Carbon;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class OrderController
 {
+    /**
+     * @param $body
+     * @param ContainerInterface $container
+     * @return bool
+     * @throws \PHPMailer\PHPMailer\Exception
+     * @throws Exception
+     */
     public static function payed($body, ContainerInterface $container)
     {
         echo ">> The order {$body['id']} was payed \n";
@@ -59,16 +71,16 @@ class OrderController
                 ]
             ]);
         if ($response->getStatusCode() != 200){
-            echo "\n API ERROR!";
-            var_dump($response->getParsedBody());
-            exit();
+            throw new Exception(
+                "ERR: Non 200 response code from the API, while trying to fetch order: " . $response->getBody(),
+                $response->getStatusCode());
         }
         $order = $response->getParsedBody(1)['data']['getOneShopOrder'];
 
         /**
          * GENERATE Html invoice
          */
-        $twig = $container->get(Twig_Environment::class);
+        $twig = $container->get(Environment::class);
         $translator = $container->get(Translator::class);
         $translator->setLocale($order['user']['last_locale']);
         $itemsParsed = array_map(function ($item) {
@@ -105,11 +117,12 @@ class OrderController
         exit(0);
         */
         
-        echo "\n   Uploading to " . $container->get('ftp')['directory'] . '/' . $fileName . " \n";
+        echo "   Uploading to " . $container->get('ftp')['directory'] . '/' . $fileName . " \n";
+
         /**
          * Upload invoice on ftp
          */
-        $ftp = new \Ftp();
+        $ftp = new Ftp();
         $ftp->connect($container->get('ftp')['host']);
         $ftp->login($container->get('ftp')['username'], $container->get('ftp')['password']);
         $ftp->put(
@@ -119,7 +132,7 @@ class OrderController
         );
         $ftp->close();
         
-        echo "\n   Upload complete \n";
+        echo "   Upload complete \n";
 
         $templateVariables['bill_url'] = $container->get('data_endpoint') . "/" . $fileName;
 
@@ -136,9 +149,9 @@ class OrderController
             ]
         ]);
         if ($response->getStatusCode() != 200){
-            echo "\n API ERROR!";
-            var_dump($response->getParsedBody());
-            exit();
+            throw new Exception(
+                "ERR: Non 200 response code from the API, while trying to update bill_url: " . $response->getBody(),
+                $response->getStatusCode());
         }
 
         /**
@@ -172,8 +185,9 @@ class OrderController
                     ]
                 ]);
                 if ($response->getStatusCode() != 200){
-                    echo "\n API ERROR!";
-                    exit();
+                    throw new Exception(
+                        "ERR: Non 200 response code from the API, while trying to create console: " . $response->getBody(),
+                        $response->getStatusCode());
                 }
             }
         }
@@ -182,17 +196,13 @@ class OrderController
          * Send a email to the customer
          */
         $mail = $container->get(PHPMailer::class);
-        try {
-            $mail->addAddress($order['user']['last_email'], "{$order['user']['first_name']} {$order['user']['last_name']}");
-            $mail->isHTML(true);
-            $mail->Subject = $translator->trans('order-payed.title');
-            $mail->Body = $twig->render('email/order-payed.twig', $templateVariables);
-            $mail->AltBody = $twig->render('email/order-payed-row.twig', $templateVariables);
+        $mail->addAddress($order['user']['last_email'], "{$order['user']['first_name']} {$order['user']['last_name']}");
+        $mail->isHTML(true);
+        $mail->Subject = $translator->trans('order-payed.title');
+        $mail->Body = $twig->render('email/order-payed.twig', $templateVariables);
+        $mail->AltBody = $twig->render('email/order-payed-row.twig', $templateVariables);
 
-            $mail->send();
-        } catch (\Exception $e) {
-            echo 'PHPMailer: Message could not be sent. Mailer Error: ', $e->getMessage();
-        }
+        $mail->send();
 
         /**
          * Send a discord webhook
@@ -218,8 +228,19 @@ class OrderController
             ->color($color);
 
         (new Client($container->get('discord_webhooks')['order']))->embed($embed)->send();
+
+        return true;
     }
 
+    /**
+     * @param $body
+     * @param ContainerInterface $container
+     * @return bool
+     * @throws \PHPMailer\PHPMailer\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public static function shipped($body, ContainerInterface $container)
     {
         //get the order by using the api
@@ -280,17 +301,16 @@ class OrderController
             'sub_total' => $order['sub_total_price'],
             'total_shipping_price' => $order['total_shipping_price']
         ];
+        $twig = $container->get(Environment::class);
         $mail = $container->get(PHPMailer::class);
-        try {
-            $mail->addAddress($order['user']['last_email'], "{$order['user']['first_name']} {$order['user']['last_name']}");
-            $mail->isHTML(true);
-            $mail->Subject = $container->get(Translator::class)->trans('order-shipped.title');
-            $mail->Body = $container->get(Twig_Environment::class)->render('email/order-shipped.twig', $templateVariables);
-            $mail->AltBody = $container->get(Twig_Environment::class)->render('email/order-shipped-row.twig', $templateVariables);
+        $mail->addAddress($order['user']['last_email'], "{$order['user']['first_name']} {$order['user']['last_name']}");
+        $mail->isHTML(true);
+        $mail->Subject = $container->get(Translator::class)->trans('order-shipped.title');
+        $mail->Body = $twig->render('email/order-shipped.twig', $templateVariables);
+        $mail->AltBody = $twig->render('email/order-shipped-row.twig', $templateVariables);
 
-            $mail->send();
-        } catch (\Exception $e) {
-            echo 'PHPMailer: Message could not be sent. Mailer Error: ', $e->getMessage();
-        }
+        $mail->send();
+
+        return true;
     }
 }

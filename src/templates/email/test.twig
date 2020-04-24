@@ -1,0 +1,74 @@
+{% extends 'email/template.twig' %}
+{% block content %}
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
+            <div style="cursor:auto;color:#636e72;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;">
+                <h2 style="font-family: Roboto, Helvetica, Arial, sans-serif;font-weight: 500;font-size: 20px;color: #2d3436;letter-spacing: 0.27px;">Hello matthieu,</h2>
+
+                <p>Something cool happen and this is why:</p>
+
+                <p style="padding-top:10px;text-align: center;">
+                    The club adopted white and sky blue as their official colors in 1908. These colors are used in their
+                    sportswear as well as their logo, which depicts a Caravel on the ocean. Since august 2015,
+                    Magallanes has practiced in their hometown of San Bernardo in the city stadium, which seats 3,500
+                    spectators. They often compete in the Metropolitan Classic against their longtime rival, Santiago
+                    Morning. In addition, they compete in a championship called de la Chilenidad, where they face off
+                    against another rival team, Colo-Colo.
+                </p>
+
+                <p style="padding-top:10px;text-align: center;">
+                    {{ payload }}
+                </p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:10px 0;padding-top:10px;"
+            align="center">
+            <table role="presentation" cellpadding="0" cellspacing="0"
+                   style="border-collapse:separate;" align="center" border="0">
+                <tbody>
+                <tr>
+                    <td style="border:none;border-radius:3px;color:white;cursor:auto;padding:15px 19px;"
+                        align="center" valign="middle" bgcolor="#3490dc">
+                        <a href="https://retrobox.tech/somewhere"
+                           style="text-decoration:none;line-height:100%;background:#3490dc;color:white;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:normal;text-transform:none;margin:0px;"
+                           target="_blank">
+                            Go somewhere
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:20px 0px;">
+            <p style="font-size:1px;margin:0px auto;border-top:1px solid #DCDDDE;width:100%;"></p>
+            <!--[if mso | IE]>
+            <table role="presentation" align="center" border="0" cellpadding="0"
+                   cellspacing="0"
+                   style="font-size:1px;margin:0px auto;border-top:1px solid #DCDDDE;width:100%;"
+                   width="640">
+                <tr>
+                    <td style="height:0;line-height:0;">&nbsp;</td>
+                </tr>
+            </table><![endif]-->
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
+            <div style="cursor:auto;color:#636e72;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;">
+                <p style="text-align: center;">Another test thing</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="word-break:break-word;font-size:0px;padding:0px;text-align:center"
+            align="left">
+            <div style="cursor:auto;color:#7f8c8d;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:15px;line-height:8px;text-align:center;">
+                <p>Did you like this test?</p>
+            </div>
+        </td>
+    </tr>
+{% endblock %}

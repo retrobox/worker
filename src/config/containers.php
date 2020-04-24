@@ -1,8 +1,18 @@
 <?php
 
-return [    
-    \Lefuturiste\Jobatator\Client::class => function(\Psr\Container\ContainerInterface $container) {
-        $client = new \Lefuturiste\Jobatator\Client(
+use App\ApiClient;
+use Lefuturiste\Jobatator\Client;
+use PHPMailer\PHPMailer\PHPMailer;
+use Psr\Container\ContainerInterface;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Translation\Loader\JsonFileLoader;
+use Symfony\Component\Translation\Translator;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
+return [
+    Client::class => function(ContainerInterface $container) {
+        $client = new Client(
             $container->get('jobatator')['host'],
             $container->get('jobatator')['port'],
             $container->get('jobatator')['username'],
@@ -12,10 +22,10 @@ return [
         $client->createConnexion();
         return $client;
     },
-    \App\ApiClient::class => function (\Psr\Container\ContainerInterface $container) {
-        return new \App\ApiClient($container->get('api')['endpoint'], $container->get('api')['key']);
+    ApiClient::class => function (ContainerInterface $container) {
+        return new ApiClient($container->get('api')['endpoint'], $container->get('api')['key']);
     },
-    Ftp::class => function (\Psr\Container\ContainerInterface $container) {
+    Ftp::class => function (ContainerInterface $container) {
         $client = new Ftp();
         //, $container->get('ftp')['ssl'], $container->get('ftp')['port']
         $client->connect($container->get('ftp')['host']);
@@ -23,8 +33,8 @@ return [
         //$client->pasv(true);
         return $client;
     },
-    \PHPMailer\PHPMailer\PHPMailer::class => function (\Psr\Container\ContainerInterface $container) {
-        $mailer = new \PHPMailer\PHPMailer\PHPMailer(true);
+    PHPMailer::class => function (ContainerInterface $container) {
+        $mailer = new PHPMailer(true);
         $mailer->isSMTP();
         $mailer->SMTPOptions = array(
             'ssl' => array(
@@ -45,17 +55,17 @@ return [
         return $mailer;
     },
     Symfony\Component\Translation\Translator::class => function () {
-        $translator = new \Symfony\Component\Translation\Translator('fr_FR');
+        $translator = new Translator('fr_FR');
         $translator->setFallbackLocales(['fr_FR']);
-        $translator->addLoader('json', new \Symfony\Component\Translation\Loader\JsonFileLoader());
+        $translator->addLoader('json', new JsonFileLoader());
         $translator->addResource('json', 'src/locales/fr.json', 'fr_FR');
         $translator->addResource('json', 'src/locales/en.json', 'en_EN');
         return $translator;
     },
-    Twig_Environment::class => function (\Symfony\Component\Translation\Translator $translator) {
-        $loader = new Twig_Loader_Filesystem('./src/templates');
-        $environment = new Twig_Environment($loader, []);
-        $environment->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($translator));
+    Environment::class => function (Translator $translator) {
+        $loader = new FilesystemLoader('./src/templates');
+        $environment = new Environment($loader, []);
+        $environment->addExtension(new TranslationExtension($translator));
         return $environment;
     }
     /*\Elasticsearch\Client::class => function (\Psr\Container\ContainerInterface $container) {
