@@ -155,44 +155,6 @@ class OrderController
         }
 
         /**
-         * Add consoles on Api if needed
-         */
-        //search for consoles
-        //add each by requesting the API
-        foreach ($order['items'] as $shopItem) {
-            if (
-                isset($shopItem['pivot']['shop_item_custom_option_storage']) &&
-                $shopItem['pivot']['shop_item_custom_option_storage'] !== null &&
-                $shopItem['pivot']['shop_item_custom_option_storage'] !== '' &&
-                isset($shopItem['pivot']['shop_item_custom_option_color']) &&
-                $shopItem['pivot']['shop_item_custom_option_color'] !== '' &&
-                $shopItem['pivot']['shop_item_custom_option_color'] !== null
-            ) {
-                $response = $apiClient->graphQL([
-                    'query' => "mutation (\$console: ConsoleStoreInput!) {
-                        storeConsole(console: \$console) {
-                            id,
-                            saved
-                        }
-                    }",
-                    'variables' => [
-                        'console' => [
-                            'color' => $shopItem['pivot']['shop_item_custom_option_color'],
-                            'storage' => strval($shopItem['pivot']['shop_item_custom_option_storage']),
-                            'order_id' => $order['id'],
-                            'user_id' => $order['user']['id']
-                        ]
-                    ]
-                ]);
-                if ($response->getStatusCode() != 200){
-                    throw new Exception(
-                        "ERR: Non 200 response code from the API, while trying to create console: " . $response->getBody(),
-                        $response->getStatusCode());
-                }
-            }
-        }
-
-        /**
          * Send a email to the customer
          */
         $mail = $container->get(PHPMailer::class);
