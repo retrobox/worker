@@ -51,7 +51,7 @@ return [
         $mailer->Username = $container->get('smtp')['username'];
         $mailer->Password = $container->get('smtp')['password'];
         $mailer->SMTPSecure = $container->get('smtp')['secure']; //tls
-        $mailer->setFrom('no-reply@mg.retrobox.tech', 'Retrobox');
+        $mailer->setFrom('no-reply@mg.retrobox.tech', 'RetroBox');
         return $mailer;
     },
     Symfony\Component\Translation\Translator::class => function () {

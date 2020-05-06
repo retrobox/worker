@@ -2,37 +2,37 @@
   "locale": "fr",
   "email": {
     "need-help": "Besoin d'aide ? Contactez nous sur notre",
-    "no-reply": "Ne pas répondre sur cette adresse mail, envoyer votre demande sur contact@retrobox.tech",
+    "no-reply": "Ne pas répondre sur cette adresse mail, envoyer votre demande sur ",
     "contact-us": {
       "website": "site web",
       "twitter": "ou sur twitter",
       "community": "Vous voulez rejoindre notre communauté ? Nous vous invitons sur notre ",
-      "discord": "discord",
-      "open-source": "Notre projet est open source voyez notre profil",
-      "github": "github"
+      "discord": "Discord",
+      "open-source": "Notre projet est open source voyez notre organisation",
+      "github": "Github"
     }
   },
   "order-payed": {
     "title": "Merci pour votre commande !",
     "hello": "Bonjour",
-    "description": "Préparer le matériel ! Vous allez bientôt recevoir la commande ! On y bosse rapidement... Voici donc un récapitulatif de votre commande :",
+    "description": "Préparez le matériel ! Vous allez bientôt recevoir la commande ! On y bosse rapidement... Voici donc un récapitulatif de votre commande :",
     "item": "Article",
     "items": "Articles",
     "price": "Prix",
     "sub_total": "Sous total",
-    "shipping_price": "Prix de livraison",
+    "shipping_price": "Frais de port",
     "total": "Total",
     "bill_online": {
       "description": "Vous pouvez aussi consultez votre facture en ligne",
       "button": "Voir la facture"
     },
     "shipping_address": "Adresse de facturation",
-    "created_at": "Créé le",
-    "way": "Méthode de payment :",
+    "created_at": "Créée le",
+    "way": "Méthode de paiement :",
     "order-id": "FACTURE N° %id%"
   },
   "order-shipped": {
-    "title": "Votre commande à été envoyé !",
+    "title": "Votre commande a été envoyée !",
     "hello": "Salut",
     "description": "J'ai une bonne nouvelle ! On a fait notre maximum et votre commande est déjà envoyée ! Profitez bien ;)",
     "shipping_address": "Pour rappel, ceci est votre adresse de livraison :"

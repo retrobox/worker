@@ -136,7 +136,7 @@
                         </td>
 
                         <td style="font-size: 1.3em;">
-                            <a href="https://retrobox.tech">RETROBOX</a>
+                            <a href="https://retrobox.tech">RetroBox</a>
                         </td>
                     </tr>
                 </table>
@@ -198,7 +198,7 @@
             </td>
 
             <td>
-                € {{ item.price }}
+                {{ item.price }} €
             </td>
         </tr>
         {% endfor %}
@@ -209,7 +209,7 @@
             </td>
 
             <td>
-                € {{ sub_total }}
+                {{ sub_total }} €
             </td>
         </tr>
 
@@ -224,7 +224,7 @@
             </td>
 
             <td>
-                € {{ total_shipping_price }}
+                {{ total_shipping_price }} €
             </td>
         </tr>
 
@@ -234,7 +234,7 @@
             </td>
 
             <td>
-                {{ 'order-payed.total'|trans }} € {{ total }}
+                {{ 'order-payed.total'|trans }} {{ total }} €
             </td>
         </tr>
 
@@ -242,8 +242,6 @@
             <td colspan="2">
                <div class="legals-content">
                     N°SIRET : 84419036300011 <br>
-                    Code NAF : 4779Z <br>
-                    RCS : 844 190 363 <br>
                     N°TVA : FR 41 844190363 <br>
                </div>
             </td>                           

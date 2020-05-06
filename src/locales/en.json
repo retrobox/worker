@@ -2,14 +2,14 @@
   "locale": "en",
   "email": {
     "need-help": "Need help ? Contact us on our",
-    "no-reply": "Please do not answer to this email, send your request on contact@retrobox.tech",
+    "no-reply": "Please do not answer to this email, send your request on ",
     "contact-us": {
       "website": "web site",
       "twitter": "or on twitter",
       "community": "Want to join our community ? Join our ",
-      "discord": "discord",
+      "discord": "Discord",
       "us-open-source": "Our project is open source, see the ",
-      "github": "github page"
+      "github": "Github page"
     }
   },
   "order-payed": {
