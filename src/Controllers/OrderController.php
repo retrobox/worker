@@ -72,8 +72,9 @@ class OrderController
             ]);
         if ($response->getStatusCode() != 200){
             throw new Exception(
-                "ERR: Non 200 response code from the API, while trying to fetch order: " . $response->getBody(),
-                $response->getStatusCode());
+                "ERR: Non 200 response code from the API, while trying to fetch order: " . $response->getBody()->getContents(),
+                $response->getStatusCode()
+            );
         }
         $order = $response->getParsedBody(1)['data']['getOneShopOrder'];
 
@@ -150,7 +151,7 @@ class OrderController
         ]);
         if ($response->getStatusCode() != 200){
             throw new Exception(
-                "ERR: Non 200 response code from the API, while trying to update bill_url: " . $response->getBody(),
+                "ERR: Non 200 response code from the API, while trying to update bill_url: " . $response->getBody()->getContents(),
                 $response->getStatusCode());
         }
 
